@@ -6,6 +6,12 @@ pipeline {
     stages {
         
         stage('Zuul') {
+            when {
+                anyOf {
+                    changeset "*ZuulBase/**"
+                    expression { currentBuild.previousBuild.result != "SUCCESS"}
+                }
+            }
             steps {
                 dir("ZuulBase/"){
                     sh "docker build -t zuul ."
@@ -16,6 +22,12 @@ pipeline {
         }
 
         stage('Eureka') {
+            when {
+                anyOf {
+                    changeset "*EurekaBase/**"
+                    expression { currentBuild.previousBuild.result != "SUCCESS"}
+                }
+            }
             steps {
                 dir("EurekaBase/"){
                     sh "docker build -t eureka ."
@@ -26,6 +38,12 @@ pipeline {
         }
         
         stage('Ordenes') {
+            when {
+                anyOf {
+                    changeset "*ordenes-service/**"
+                    expression { currentBuild.previousBuild.result != "SUCCESS"}
+                }
+            }
             steps {
                 dir("ordenes-service/"){
                     sh "docker build -t ordenes-service ."
@@ -36,6 +54,12 @@ pipeline {
         }
 
         stage('Productos') {
+            when {
+                anyOf {
+                    changeset "*productos-service/**"
+                    expression { currentBuild.previousBuild.result != "SUCCESS"}
+                }
+            }
             steps {
                 dir("productos-service/"){
                     sh "docker build -t productos-service ."
@@ -46,6 +70,12 @@ pipeline {
         }
 
         stage('Usuarios') {
+            when {
+                anyOf {
+                    changeset "*usuarios-service/**"
+                    expression { currentBuild.previousBuild.result != "SUCCESS"}
+                }
+            }
             steps {
                 dir("usuarios-service/"){
                     sh "docker build -t usuarios-service ."
