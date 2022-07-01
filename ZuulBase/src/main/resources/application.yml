@@ -10,7 +10,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://192.168.1.133:8761/eureka
+      defaultZone: http://${HOST_IP_ADDRESS}:8761/eureka
 
 zuul:
   ignoredServices: '*'

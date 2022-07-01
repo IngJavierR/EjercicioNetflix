@@ -16,7 +16,7 @@ spring:
 server:
   port: 8030
 
-KAFKA_BOOSTRAPADDRESS: 192.168.1.133:9192
+KAFKA_BOOSTRAPADDRESS: ${HOST_IP_ADDRESS}:9192
 GROUPID: order
 
 eureka:
@@ -24,7 +24,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://192.168.1.133:8761/eureka
+      defaultZone: http://${HOST_IP_ADDRESS}:8761/eureka
   instance:
     leaseRenewalIntervalInSeconds: 5
     preferIpAddress: true
