@@ -16,7 +16,7 @@ pipeline {
                 dir("ZuulBase/"){
                     sh "docker build -t zuul ."
                     sh 'docker stop zuul || true'
-                    sh 'docker run -d --rm --name zuul -e SPRING_PROFILES_ACTIVE=dev -p zuul'
+                    sh 'docker run -d --rm --name zuul -e SPRING_PROFILES_ACTIVE=dev -p 8000:8080 zuul'
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
                 dir("EurekaBase/"){
                     sh "docker build -t eureka ."
                     sh 'docker stop eureka || true'
-                    sh 'docker run -d --rm --name eureka -e SPRING_PROFILES_ACTIVE=dev -p eureka'
+                    sh 'docker run -d --rm --name eureka -e SPRING_PROFILES_ACTIVE=dev -p 8761:8761 eureka'
                 }
             }
         }
@@ -48,7 +48,7 @@ pipeline {
                 dir("ordenes-service/"){
                     sh "docker build -t ordenes-service ."
                     sh 'docker stop ordenes-service || true'
-                    sh 'docker run -d --rm --name ordenes-service -e SPRING_PROFILES_ACTIVE=dev -p ordenes-service'
+                    sh 'docker run -d --rm --name ordenes-service -e SPRING_PROFILES_ACTIVE=dev -p 8020:8020 ordenes-service'
                 }
             }
         }
@@ -64,7 +64,7 @@ pipeline {
                 dir("productos-service/"){
                     sh "docker build -t productos-service ."
                     sh 'docker stop productos-service || true'
-                    sh 'docker run -d --rm --name productos-service -e SPRING_PROFILES_ACTIVE=dev -p productos-service'
+                    sh 'docker run -d --rm --name productos-service -e SPRING_PROFILES_ACTIVE=dev -p 8030:8030 productos-service'
                 }
             }
         }
@@ -80,7 +80,7 @@ pipeline {
                 dir("usuarios-service/"){
                     sh "docker build -t usuarios-service ."
                     sh 'docker stop usuarios-service || true'
-                    sh 'docker run -d --rm --name usuarios-service -e SPRING_PROFILES_ACTIVE=dev -p usuarios-service'
+                    sh 'docker run -d --rm --name usuarios-service -e SPRING_PROFILES_ACTIVE=dev -p 8010:8010 usuarios-service'
                 }
             }
         }
